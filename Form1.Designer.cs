@@ -39,6 +39,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtCount = new System.Windows.Forms.TextBox();
+            this.lblMonth = new System.Windows.Forms.Label();
+            this.lblMonday = new System.Windows.Forms.Label();
+            this.lblTues = new System.Windows.Forms.Label();
+            this.lblWednes = new System.Windows.Forms.Label();
+            this.lblThurs = new System.Windows.Forms.Label();
+            this.lblFri = new System.Windows.Forms.Label();
+            this.lblSat = new System.Windows.Forms.Label();
+            this.lblSun = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lv_dataList
@@ -53,7 +61,7 @@
             this.lv_dataList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lv_dataList.Location = new System.Drawing.Point(12, 12);
             this.lv_dataList.Name = "lv_dataList";
-            this.lv_dataList.Size = new System.Drawing.Size(365, 426);
+            this.lv_dataList.Size = new System.Drawing.Size(365, 497);
             this.lv_dataList.TabIndex = 0;
             this.lv_dataList.UseCompatibleStateImageBehavior = false;
             // 
@@ -144,11 +152,98 @@
             this.txtCount.Text = "0";
             this.txtCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // lblMonth
+            // 
+            this.lblMonth.Font = new System.Drawing.Font("맑은 고딕", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblMonth.Location = new System.Drawing.Point(530, 120);
+            this.lblMonth.Name = "lblMonth";
+            this.lblMonth.Size = new System.Drawing.Size(100, 40);
+            this.lblMonth.TabIndex = 9;
+            this.lblMonth.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblMonday
+            // 
+            this.lblMonday.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblMonday.Location = new System.Drawing.Point(460, 162);
+            this.lblMonday.Name = "lblMonday";
+            this.lblMonday.Size = new System.Drawing.Size(50, 20);
+            this.lblMonday.TabIndex = 10;
+            this.lblMonday.Text = "월요일";
+            this.lblMonday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblTues
+            // 
+            this.lblTues.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblTues.Location = new System.Drawing.Point(516, 162);
+            this.lblTues.Name = "lblTues";
+            this.lblTues.Size = new System.Drawing.Size(50, 20);
+            this.lblTues.TabIndex = 11;
+            this.lblTues.Text = "화요일";
+            this.lblTues.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblWednes
+            // 
+            this.lblWednes.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblWednes.Location = new System.Drawing.Point(572, 162);
+            this.lblWednes.Name = "lblWednes";
+            this.lblWednes.Size = new System.Drawing.Size(50, 20);
+            this.lblWednes.TabIndex = 12;
+            this.lblWednes.Text = "수요일";
+            this.lblWednes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblThurs
+            // 
+            this.lblThurs.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblThurs.Location = new System.Drawing.Point(628, 162);
+            this.lblThurs.Name = "lblThurs";
+            this.lblThurs.Size = new System.Drawing.Size(50, 20);
+            this.lblThurs.TabIndex = 13;
+            this.lblThurs.Text = "목요일";
+            this.lblThurs.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblFri
+            // 
+            this.lblFri.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblFri.Location = new System.Drawing.Point(684, 162);
+            this.lblFri.Name = "lblFri";
+            this.lblFri.Size = new System.Drawing.Size(50, 20);
+            this.lblFri.TabIndex = 14;
+            this.lblFri.Text = "금요일";
+            this.lblFri.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblSat
+            // 
+            this.lblSat.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblSat.Location = new System.Drawing.Point(740, 162);
+            this.lblSat.Name = "lblSat";
+            this.lblSat.Size = new System.Drawing.Size(50, 20);
+            this.lblSat.TabIndex = 15;
+            this.lblSat.Text = "토요일";
+            this.lblSat.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblSun
+            // 
+            this.lblSun.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblSun.Location = new System.Drawing.Point(404, 162);
+            this.lblSun.Name = "lblSun";
+            this.lblSun.Size = new System.Drawing.Size(50, 20);
+            this.lblSun.TabIndex = 16;
+            this.lblSun.Text = "일요일";
+            this.lblSun.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(810, 521);
+            this.Controls.Add(this.lblSun);
+            this.Controls.Add(this.lblSat);
+            this.Controls.Add(this.lblFri);
+            this.Controls.Add(this.lblThurs);
+            this.Controls.Add(this.lblWednes);
+            this.Controls.Add(this.lblTues);
+            this.Controls.Add(this.lblMonday);
+            this.Controls.Add(this.lblMonth);
             this.Controls.Add(this.txtCount);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -157,6 +252,7 @@
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.cbbKind);
             this.Controls.Add(this.lv_dataList);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -178,5 +274,13 @@
         private ColumnHeader workType;
         private ColumnHeader workCount;
         private ColumnHeader workTime;
+        private Label lblMonth;
+        private Label lblMonday;
+        private Label lblTues;
+        private Label lblWednes;
+        private Label lblThurs;
+        private Label lblFri;
+        private Label lblSat;
+        private Label lblSun;
     }
 }

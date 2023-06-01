@@ -3,6 +3,8 @@ namespace HealthNote
     public partial class Form1 : Form
     {
         private static DataBaseManager dataBaseManager = DataBaseManager.Instance;
+        Label[] labels = new Label[DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month)];
+        Button[] buttons = new Button[DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month)];
         public Form1()
         {
             InitializeComponent();    
@@ -10,7 +12,6 @@ namespace HealthNote
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
             SelectWorkOutData();
 
             List<string> workTypes = dataBaseManager.SelectWorkTypes();
@@ -20,7 +21,9 @@ namespace HealthNote
                 cbbKind.Items.Add(workTypes[i]);
             }
 
-            cbbKind.SelectedItem = "½ºÆ®·¹Äª";
+            cbbKind.SelectedItem = workTypes[0];
+
+            Create_Calendar();
         }
 
         private void cbbKind_SelectedValueChanged(object sender, EventArgs e)
@@ -71,6 +74,64 @@ namespace HealthNote
             }
 
             lv_dataList.EndUpdate();
+        }
+
+        private void Create_Calendar()
+        {
+            DateTime dateTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+
+            int checkStartWeekDay = (int)dateTime.DayOfWeek;
+            int checkWeekVertical = 0;
+            int checkWeekHorizontal = checkStartWeekDay;
+
+            this.lblMonth.Text = DateTime.Now.Month.ToString() + "¿ù";
+
+            for (int i = 0; i < DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month); i++)
+            {
+/*                labels[i] = new Label();
+                labels[i].Text = (i + 1).ToString();
+                labels[i].Font = new Font("¸¼Àº °íµñ", 10, FontStyle.Regular);
+                labels[i].TextAlign = ContentAlignment.MiddleCenter;
+                labels[i].Size = new Size(50, 20);*/
+                if (checkWeekHorizontal % 7 == 0)
+                {
+                    checkWeekVertical += 7;
+                    checkWeekHorizontal = 0;
+                }
+/*                labels[i].Location = new Point(400 + (checkWeekHorizontal * 56), 180 + (checkWeekVertical * 10));
+                this.Controls.Add(labels[i]);
+*/
+                buttons[i] = new Button();
+                buttons[i].Location = new Point(400 + (checkWeekHorizontal * 56), 200 + (checkWeekVertical * 8));
+                buttons[i].Size = new Size(50, 40);
+                buttons[i].Text = (i+1).ToString();
+                buttons[i].BackColor = Color.White;
+                buttons[i].ForeColor = Color.Black;
+                buttons[i].Enabled = false;
+                buttons[i].Click += (sender, e2) => Button_Click(sender!, e2);
+                for (int k = 0; k < lv_dataList.Items.Count; k++)
+                {
+                    if (lv_dataList.Items[k].SubItems[2].Text == $"{DateTime.Now.Year}-{DateTime.Now.Month.ToString("D2")}-{i.ToString("D2")}")
+                    {
+                        buttons[i - 1].Enabled = true;
+                        buttons[i - 1].BackColor = Color.LightSkyBlue;
+                        buttons[i - 1].ForeColor = Color.White;
+                        break;
+                    }
+                }
+
+                this.Controls.Add(buttons[i]);
+
+                checkWeekHorizontal++;
+            }
+        }
+
+        private void Button_Click(object sender, EventArgs e2)
+        {
+            string openDateTime = String.Format("{0}-{1}-{2}", DateTime.Now.Year, DateTime.Now.Month.ToString("D2"), ((Control)sender).Text.PadLeft(2, '0'));
+            
+            SummaryForm summaryForm = new SummaryForm(openDateTime);
+            summaryForm.ShowDialog();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
