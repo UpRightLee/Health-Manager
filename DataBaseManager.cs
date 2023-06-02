@@ -91,6 +91,44 @@ namespace HealthNote
 
             return returnList;
         }
+        public List<WorkOutInfo> SelectHealthInfo(string dateTime)
+        {
+            List<WorkOutInfo> returnList = new List<WorkOutInfo>();
+
+            string path = String.Format("Data Source = {0}", filePath);
+            try
+            {
+                using (SQLiteConnection connection = new SQLiteConnection(path))
+                {
+                    connection.Open();
+
+                    string sql = "SELECT B.Description, A.Count, A.WorkDateTime " +
+                    "FROM Health_Info A, Work_Code B " +
+                    "WHERE A.WorkType = B.WorkType " +
+                    $"AND A.WorkDateTime = '{dateTime}' " +
+                    "ORDER BY WorkDateTime;";
+
+                    SQLiteCommand command = new SQLiteCommand(sql, connection);
+                    SQLiteDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        returnList.Add(new WorkOutInfo
+                        {
+                            WorkType = reader["Description"].ToString(),
+                            Count = (int)(long)reader["Count"],
+                            WorkDateTime = reader["WorkDateTime"].ToString()
+                        });
+                    }
+                    reader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return returnList;
+        }
         public List<string> SelectWorkTypes()
         {
             List<string> returnList = new List<string>();

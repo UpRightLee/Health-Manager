@@ -3,7 +3,7 @@ namespace HealthNote
     public partial class Form1 : Form
     {
         private static DataBaseManager dataBaseManager = DataBaseManager.Instance;
-        Label[] labels = new Label[DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month)];
+       
         Button[] buttons = new Button[DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month)];
         public Form1()
         {
@@ -51,6 +51,8 @@ namespace HealthNote
             lblSetCount.Text = curSetCount.ToString();
 
             SelectWorkOutData();
+
+            Create_Calendar();
         }
 
         private void SelectWorkOutData()
@@ -88,19 +90,12 @@ namespace HealthNote
 
             for (int i = 0; i < DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month); i++)
             {
-/*                labels[i] = new Label();
-                labels[i].Text = (i + 1).ToString();
-                labels[i].Font = new Font("¸¼Àº °íµñ", 10, FontStyle.Regular);
-                labels[i].TextAlign = ContentAlignment.MiddleCenter;
-                labels[i].Size = new Size(50, 20);*/
                 if (checkWeekHorizontal % 7 == 0)
                 {
                     checkWeekVertical += 7;
                     checkWeekHorizontal = 0;
                 }
-/*                labels[i].Location = new Point(400 + (checkWeekHorizontal * 56), 180 + (checkWeekVertical * 10));
-                this.Controls.Add(labels[i]);
-*/
+
                 buttons[i] = new Button();
                 buttons[i].Location = new Point(400 + (checkWeekHorizontal * 56), 200 + (checkWeekVertical * 8));
                 buttons[i].Size = new Size(50, 40);
@@ -109,6 +104,7 @@ namespace HealthNote
                 buttons[i].ForeColor = Color.Black;
                 buttons[i].Enabled = false;
                 buttons[i].Click += (sender, e2) => Button_Click(sender!, e2);
+
                 for (int k = 0; k < lv_dataList.Items.Count; k++)
                 {
                     if (lv_dataList.Items[k].SubItems[2].Text == $"{DateTime.Now.Year}-{DateTime.Now.Month.ToString("D2")}-{i.ToString("D2")}")
