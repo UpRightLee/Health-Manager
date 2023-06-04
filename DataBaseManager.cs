@@ -102,11 +102,14 @@ namespace HealthNote
                 {
                     connection.Open();
 
-                    string sql = "SELECT B.Description, A.Count, A.WorkDateTime " +
-                    "FROM Health_Info A, Work_Code B " +
-                    "WHERE A.WorkType = B.WorkType " +
-                    $"AND A.WorkDateTime = '{dateTime}' " +
-                    "ORDER BY WorkDateTime;";
+                    string sql = 
+                        "SELECT " +
+                        "B.Description, ROUND(AVG(A.Count)) AS Avg_Count, A.WorkDateTime, COUNT(B.DESCRIPTION) AS Total_Set " +
+                        "FROM Health_Info A, Work_Code B " +
+                        "WHERE A.WorkType = B.WorkType " +
+                       $"AND A.WorkDateTime = '{dateTime}' " +
+                        "GROUP BY B.DESCRIPTION " +
+                        "ORDER BY WorkDateTime;";
 
                     SQLiteCommand command = new SQLiteCommand(sql, connection);
                     SQLiteDataReader reader = command.ExecuteReader();
@@ -115,7 +118,8 @@ namespace HealthNote
                         returnList.Add(new WorkOutInfo
                         {
                             WorkType = reader["Description"].ToString(),
-                            Count = (int)(long)reader["Count"],
+                            Count = (int)(double)reader["Avg_Count"],
+                            TotalSet = (int)(long)reader["Total_Set"],
                             WorkDateTime = reader["WorkDateTime"].ToString()
                         });
                     }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.lv_dataList = new System.Windows.Forms.ListView();
+            this.header = new System.Windows.Forms.ColumnHeader();
             this.workType = new System.Windows.Forms.ColumnHeader();
             this.workCount = new System.Windows.Forms.ColumnHeader();
             this.workTime = new System.Windows.Forms.ColumnHeader();
@@ -52,6 +53,7 @@
             // lv_dataList
             // 
             this.lv_dataList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.header,
             this.workType,
             this.workCount,
             this.workTime});
@@ -65,19 +67,28 @@
             this.lv_dataList.TabIndex = 0;
             this.lv_dataList.UseCompatibleStateImageBehavior = false;
             // 
+            // header
+            // 
+            this.header.DisplayIndex = 3;
+            this.header.Width = 0;
+            // 
             // workType
             // 
+            this.workType.DisplayIndex = 0;
             this.workType.Text = "종목";
+            this.workType.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.workType.Width = 120;
             // 
             // workCount
             // 
+            this.workCount.DisplayIndex = 1;
             this.workCount.Text = "횟수/시간";
             this.workCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.workCount.Width = 100;
             // 
             // workTime
             // 
+            this.workTime.DisplayIndex = 2;
             this.workTime.Text = "날짜";
             this.workTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.workTime.Width = 120;
@@ -282,5 +293,6 @@
         private Label lblFri;
         private Label lblSat;
         private Label lblSun;
+        private ColumnHeader header;
     }
 }

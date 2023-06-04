@@ -34,10 +34,14 @@ namespace HealthNote
             List<WorkOutInfo> healthInfos = dataBaseManager.SelectHealthInfo(dateTime);
             for (int i = 0; i < healthInfos.Count; i++)
             {
-                ListViewItem items = new ListViewItem(healthInfos[i].WorkType);
+                ListViewItem items = new ListViewItem("");
+                items.SubItems.Add(healthInfos[i].WorkType);
+
                 if (healthInfos[i].WorkType == "필라테스" || healthInfos[i].WorkType == "요가" || healthInfos[i].WorkType == "스트레칭")
                     items.SubItems.Add(healthInfos[i].Count.ToString() + "분");
                 else items.SubItems.Add(healthInfos[i].Count.ToString() + "개");
+
+                items.SubItems.Add(healthInfos[i].TotalSet.ToString() + "번");
                 items.SubItems.Add(healthInfos[i].WorkDateTime);
 
                 lv_dataList.Items.Add(items);

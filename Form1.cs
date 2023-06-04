@@ -66,10 +66,13 @@ namespace HealthNote
             List<WorkOutInfo> healthInfos = dataBaseManager.SelectHealthInfo();
             for (int i = 0; i < healthInfos.Count; i++)
             {
-                ListViewItem items = new ListViewItem(healthInfos[i].WorkType);
+                ListViewItem items = new ListViewItem("");
+                items.SubItems.Add(healthInfos[i].WorkType);
+
                 if (healthInfos[i].WorkType == "필라테스" || healthInfos[i].WorkType == "요가" || healthInfos[i].WorkType == "스트레칭")
                     items.SubItems.Add(healthInfos[i].Count.ToString() + "분");
                 else items.SubItems.Add(healthInfos[i].Count.ToString() + "개");
+
                 items.SubItems.Add(healthInfos[i].WorkDateTime);
 
                 lv_dataList.Items.Add(items);
@@ -107,7 +110,7 @@ namespace HealthNote
 
                 for (int k = 0; k < lv_dataList.Items.Count; k++)
                 {
-                    if (lv_dataList.Items[k].SubItems[2].Text == $"{DateTime.Now.Year}-{DateTime.Now.Month.ToString("D2")}-{i.ToString("D2")}")
+                    if (lv_dataList.Items[k].SubItems[3].Text == $"{DateTime.Now.Year}-{DateTime.Now.Month.ToString("D2")}-{i.ToString("D2")}")
                     {
                         buttons[i - 1].Enabled = true;
                         buttons[i - 1].BackColor = Color.LightSkyBlue;
@@ -133,13 +136,13 @@ namespace HealthNote
         private void btnDelete_Click(object sender, EventArgs e)
         {
             WorkOutInfo workData = new WorkOutInfo();
-            workData.WorkType = lv_dataList.SelectedItems[0].SubItems[0].Text;
+            workData.WorkType = lv_dataList.SelectedItems[0].SubItems[1].Text;
             
             if (workData.WorkType == "필라테스" || workData.WorkType == "요가" || workData.WorkType == "스트레칭")
-                workData.Count = int.Parse(lv_dataList.SelectedItems[0].SubItems[1].Text.Replace("분", ""));
-            else workData.Count = int.Parse(lv_dataList.SelectedItems[0].SubItems[1].Text.Replace("개", ""));
+                workData.Count = int.Parse(lv_dataList.SelectedItems[0].SubItems[2].Text.Replace("분", ""));
+            else workData.Count = int.Parse(lv_dataList.SelectedItems[0].SubItems[2].Text.Replace("개", ""));
             
-            workData.WorkDateTime = lv_dataList.SelectedItems[0].SubItems[2].Text;
+            workData.WorkDateTime = lv_dataList.SelectedItems[0].SubItems[3].Text;
 
             if (dataBaseManager.DeleteWorkData(workData)) MessageBox.Show("Delete Success");
             else MessageBox.Show("Delete Failed");
