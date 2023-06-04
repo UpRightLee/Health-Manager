@@ -104,12 +104,12 @@ namespace HealthNote
 
                     string sql = 
                         "SELECT " +
-                        "B.Description, ROUND(AVG(A.Count)) AS Avg_Count, A.WorkDateTime, COUNT(B.DESCRIPTION) AS Total_Set " +
+                        "B.Description, ROUND(AVG(A.Count)) AS Avg_Count, SUM(A.COUNT) AS Total_Count, COUNT(B.DESCRIPTION) AS Total_Set " +
                         "FROM Health_Info A, Work_Code B " +
                         "WHERE A.WorkType = B.WorkType " +
                        $"AND A.WorkDateTime = '{dateTime}' " +
                         "GROUP BY B.DESCRIPTION " +
-                        "ORDER BY WorkDateTime;";
+                        "ORDER BY B.Description;";
 
                     SQLiteCommand command = new SQLiteCommand(sql, connection);
                     SQLiteDataReader reader = command.ExecuteReader();
@@ -119,8 +119,8 @@ namespace HealthNote
                         {
                             WorkType = reader["Description"].ToString(),
                             Count = (int)(double)reader["Avg_Count"],
-                            TotalSet = (int)(long)reader["Total_Set"],
-                            WorkDateTime = reader["WorkDateTime"].ToString()
+                            TotalCount= (int)(long)reader["Total_Count"],
+                            TotalSet = (int)(long)reader["Total_Set"]
                         });
                     }
                     reader.Close();

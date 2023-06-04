@@ -52,7 +52,30 @@ namespace HealthNote
 
             SelectWorkOutData();
 
-            Create_Calendar();
+            Update_Calendar(newWorkOutInfo.WorkDateTime, "Add");
+        }
+
+        private void Update_Calendar(string workDateTime, string addOrDelete)
+        {
+            int date = int.Parse(workDateTime.Substring(8, 2));
+
+            if (addOrDelete.Equals("Add"))
+            {
+                this.Controls.Remove(buttons[date - 1]);
+                this.buttons[date - 1].Enabled = true;
+                this.buttons[date - 1].BackColor = Color.LightSkyBlue;
+                this.buttons[date - 1].ForeColor = Color.White;
+                this.Controls.Add(buttons[date - 1]);
+            }
+            else if (addOrDelete.Equals("Delete"))
+            {
+                this.Controls.Remove(buttons[date - 1]);
+                this.buttons[date - 1].Enabled = false;
+                this.buttons[date - 1].BackColor = Color.White;
+                this.buttons[date - 1].ForeColor = Color.Black;
+                this.Controls.Add(buttons[date - 1]);
+            }
+            
         }
 
         private void SelectWorkOutData()
@@ -82,7 +105,7 @@ namespace HealthNote
         }
 
         private void Create_Calendar()
-        {
+        {       
             DateTime dateTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
 
             int checkStartWeekDay = (int)dateTime.DayOfWeek;
@@ -148,6 +171,8 @@ namespace HealthNote
             else MessageBox.Show("Delete Failed");
 
             SelectWorkOutData();
+
+            Update_Calendar(workData.WorkDateTime, "Delete");
         }
     }
 }

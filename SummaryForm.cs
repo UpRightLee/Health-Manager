@@ -26,7 +26,7 @@ namespace HealthNote
         private void SelectSummaryWorkOutData(string dateTime)
         {
             lv_dataList.Items.Clear();
-
+            
             lv_dataList.BeginUpdate();
 
             lv_dataList.View = View.Details;
@@ -38,11 +38,14 @@ namespace HealthNote
                 items.SubItems.Add(healthInfos[i].WorkType);
 
                 if (healthInfos[i].WorkType == "필라테스" || healthInfos[i].WorkType == "요가" || healthInfos[i].WorkType == "스트레칭")
+                    items.SubItems.Add(healthInfos[i].TotalCount.ToString() + "분");
+                else items.SubItems.Add(healthInfos[i].TotalCount.ToString() + "개");
+
+                if (healthInfos[i].WorkType == "필라테스" || healthInfos[i].WorkType == "요가" || healthInfos[i].WorkType == "스트레칭")
                     items.SubItems.Add(healthInfos[i].Count.ToString() + "분");
                 else items.SubItems.Add(healthInfos[i].Count.ToString() + "개");
 
                 items.SubItems.Add(healthInfos[i].TotalSet.ToString() + "번");
-                items.SubItems.Add(healthInfos[i].WorkDateTime);
 
                 lv_dataList.Items.Add(items);
             }

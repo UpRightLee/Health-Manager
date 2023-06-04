@@ -10,6 +10,7 @@ namespace HealthNote
     {
         public string? WorkType { get; set; }
         public int Count { get; set; }
+        public int TotalCount { get; set; }
         public int TotalSet { get; set; }
         public string? WorkDateTime { get; set; }
     }
