@@ -1,6 +1,6 @@
 ﻿namespace HealthNote
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -48,6 +48,7 @@
             this.lblFri = new System.Windows.Forms.Label();
             this.lblSat = new System.Windows.Forms.Label();
             this.lblSun = new System.Windows.Forms.Label();
+            this.btnAddWork = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lv_dataList
@@ -104,9 +105,9 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(608, 12);
+            this.btnAdd.Location = new System.Drawing.Point(593, 12);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(124, 26);
+            this.btnAdd.Size = new System.Drawing.Size(101, 26);
             this.btnAdd.TabIndex = 3;
             this.btnAdd.Text = "기록하기";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -114,9 +115,9 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(608, 47);
+            this.btnDelete.Location = new System.Drawing.Point(593, 47);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(124, 26);
+            this.btnDelete.Size = new System.Drawing.Size(101, 26);
             this.btnDelete.TabIndex = 4;
             this.btnDelete.Text = "삭제";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -242,11 +243,22 @@
             this.lblSun.Text = "일요일";
             this.lblSun.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // Form1
+            // btnAddWork
+            // 
+            this.btnAddWork.Location = new System.Drawing.Point(727, 12);
+            this.btnAddWork.Name = "btnAddWork";
+            this.btnAddWork.Size = new System.Drawing.Size(71, 26);
+            this.btnAddWork.TabIndex = 17;
+            this.btnAddWork.Text = "운동추가";
+            this.btnAddWork.UseVisualStyleBackColor = true;
+            this.btnAddWork.Click += new System.EventHandler(this.btnAddWork_Click);
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(810, 521);
+            this.Controls.Add(this.btnAddWork);
             this.Controls.Add(this.lblSun);
             this.Controls.Add(this.lblSat);
             this.Controls.Add(this.lblFri);
@@ -264,8 +276,8 @@
             this.Controls.Add(this.cbbKind);
             this.Controls.Add(this.lv_dataList);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "MainForm";
+            this.Text = "Health_Note";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -294,5 +306,6 @@
         private Label lblSat;
         private Label lblSun;
         private ColumnHeader header;
+        private Button btnAddWork;
     }
 }

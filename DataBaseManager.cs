@@ -193,6 +193,35 @@ namespace HealthNote
                 return false;
             }
         }
+        public bool InsertNewWorkType(string workType)
+        {
+            bool returnData = false;
+            string path = String.Format("Data Source = {0}", filePath);
+
+            try
+            {
+                using (SQLiteConnection connection = new SQLiteConnection(path))
+                {
+                    connection.Open();
+                    string sql = "";
+
+                    sql = "INSERT INTO WORK_CODE " +
+                    " (Description) " +
+                    "VALUES " +
+                    $"('{workType}'); ";
+
+                    SQLiteCommand command = new SQLiteCommand(sql, connection);
+                    returnData = command.ExecuteNonQuery() > 0;
+                }
+                if (returnData) return true;
+                else return false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+        }
         public bool DeleteWorkData(WorkOutInfo workData)
         {
             bool returnData = false;

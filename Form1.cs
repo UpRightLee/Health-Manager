@@ -1,11 +1,11 @@
 namespace HealthNote
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         private static DataBaseManager dataBaseManager = DataBaseManager.Instance;
        
         Button[] buttons = new Button[DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month)];
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();    
         }
@@ -14,14 +14,7 @@ namespace HealthNote
         {
             SelectWorkOutData();
 
-            List<string> workTypes = dataBaseManager.SelectWorkTypes();
-
-            for (int i = 0; i < workTypes.Count; i++)
-            {
-                cbbKind.Items.Add(workTypes[i]);
-            }
-
-            cbbKind.SelectedItem = workTypes[0];
+            Update_WorkComboBox();
 
             Create_Calendar();
         }
@@ -173,6 +166,36 @@ namespace HealthNote
             SelectWorkOutData();
 
             Update_Calendar(workData.WorkDateTime, "Delete");
+        }
+
+        private void btnAddWork_Click(object sender, EventArgs e)
+        {
+            AddWorkForm addWorkForm = new AddWorkForm();
+            addWorkForm.FormClosed += AddWorkForm_FormClosed;
+            addWorkForm.ShowDialog();
+        }
+
+        private void AddWorkForm_FormClosed(object? sender, FormClosedEventArgs e)
+        {
+            Update_WorkComboBox();
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            Update_WorkComboBox();
+        }
+        private void Update_WorkComboBox()
+        {
+            cbbKind.Items.Clear();
+
+            List<string> workTypes = dataBaseManager.SelectWorkTypes();
+
+            for (int i = 0; i < workTypes.Count; i++)
+            {
+                cbbKind.Items.Add(workTypes[i]);
+            }
+
+            cbbKind.SelectedItem = workTypes[0];
         }
     }
 }
