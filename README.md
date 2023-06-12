@@ -5,7 +5,7 @@ Using C# Winform
 
 Main 화면
 
-![image](https://github.com/UpRightLee/Health-Manager/assets/93921457/680afbad-97b9-4c2f-b710-2a9dabdd9cbc)
+![image](https://github.com/UpRightLee/Health-Manager/assets/93921457/63415be3-7809-4252-a51e-73e0b0ead208)
 
 Summary 화면
 
