@@ -103,8 +103,10 @@
             this.ClientSize = new System.Drawing.Size(477, 319);
             this.Controls.Add(this.lblDateTime);
             this.Controls.Add(this.lv_dataList);
+            this.KeyPreview = true;
             this.Name = "SummaryForm";
             this.Text = "SummaryForm";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SummaryForm_KeyDown);
             this.ResumeLayout(false);
 
         }

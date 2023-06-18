@@ -52,5 +52,13 @@ namespace HealthNote
 
             lv_dataList.EndUpdate();
         }
+
+        private void SummaryForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if((Keys)e.KeyValue == Keys.Escape)
+            {
+                this.Close();   
+            }
+        }
     }
 }
