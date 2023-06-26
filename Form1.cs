@@ -26,6 +26,7 @@ namespace HealthNote
             else label1.Text = "È½¼ö : ";
 
             lblSetCount.Text = "0";
+            txtCount.Text = "0";
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -196,6 +197,12 @@ namespace HealthNote
             }
 
             cbbKind.SelectedItem = workTypes[0];
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MonthlyReportForm monthlyReportForm = new MonthlyReportForm();
+            monthlyReportForm.ShowDialog();
         }
     }
 }

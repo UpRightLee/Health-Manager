@@ -68,7 +68,7 @@ namespace HealthNote
                     string sql = "SELECT B.Description, A.Count, A.WorkDateTime " +
                     "FROM Health_Info A, Work_Code B " +
                     "WHERE A.WorkType = B.WorkType " +
-                    "ORDER BY WorkDateTime;";
+                    "ORDER BY WorkDateTime DESC;";
 
                     SQLiteCommand command = new SQLiteCommand(sql, connection);
                     SQLiteDataReader reader = command.ExecuteReader();
@@ -121,6 +121,50 @@ namespace HealthNote
                             Count = (int)(double)reader["Avg_Count"],
                             TotalCount= (int)(long)reader["Total_Count"],
                             TotalSet = (int)(long)reader["Total_Set"]
+                        });
+                    }
+                    reader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return returnList;
+        }
+        public List<WorkOutInfo> SelectMonthlyReportInfo()
+        {
+            List<WorkOutInfo> returnList = new List<WorkOutInfo>();
+
+            string path = String.Format("Data Source = {0}", filePath);
+            try
+            {
+                using (SQLiteConnection connection = new SQLiteConnection(path))
+                {
+                    connection.Open();
+
+                    string sql = "SELECT B.Description, " +
+                        "ROUND(AVG(A.Count)) AS Avg_Count, " +
+                        "SUM(A.COUNT) AS Total_Count, " +
+                        "COUNT(B.DESCRIPTION) AS Total_Set, " +
+                        "strftime(\"%m\", A.WorkDateTime) AS Month " +
+                        "FROM Health_Info A, Work_Code B " +
+                        "WHERE A.WorkType = B.WorkType " +
+                        "GROUP BY B.Description, strftime(\"%m\", A.WorkDateTime)" +
+                        "ORDER BY WorkDateTime;";
+
+                    SQLiteCommand command = new SQLiteCommand(sql, connection);
+                    SQLiteDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        returnList.Add(new WorkOutInfo
+                        {
+                            WorkType = reader["Description"].ToString(),
+                            TotalCount = (int)(long)reader["Total_Count"],
+                            Count = (int)(double)reader["Avg_Count"],
+                            TotalSet = (int)(long)reader["Total_Set"],
+                            WorkDateTime = reader["Month"].ToString()
                         });
                     }
                     reader.Close();
