@@ -49,7 +49,7 @@
             this.lblSat = new System.Windows.Forms.Label();
             this.lblSun = new System.Windows.Forms.Label();
             this.btnAddWork = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnMonthlyReport = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lv_dataList
@@ -254,22 +254,22 @@
             this.btnAddWork.UseVisualStyleBackColor = true;
             this.btnAddWork.Click += new System.EventHandler(this.btnAddWork_Click);
             // 
-            // button1
+            // btnMonthlyReport
             // 
-            this.button1.Location = new System.Drawing.Point(716, 47);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(88, 26);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "월별 레포트";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnMonthlyReport.Location = new System.Drawing.Point(716, 47);
+            this.btnMonthlyReport.Name = "btnMonthlyReport";
+            this.btnMonthlyReport.Size = new System.Drawing.Size(88, 26);
+            this.btnMonthlyReport.TabIndex = 18;
+            this.btnMonthlyReport.Text = "월별 레포트";
+            this.btnMonthlyReport.UseVisualStyleBackColor = true;
+            this.btnMonthlyReport.Click += new System.EventHandler(this.btnMonthlyReport_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(810, 521);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnMonthlyReport);
             this.Controls.Add(this.btnAddWork);
             this.Controls.Add(this.lblSun);
             this.Controls.Add(this.lblSat);
@@ -319,6 +319,6 @@
         private Label lblSun;
         private ColumnHeader header;
         private Button btnAddWork;
-        private Button button1;
+        private Button btnMonthlyReport;
     }
 }

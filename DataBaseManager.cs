@@ -148,10 +148,10 @@ namespace HealthNote
                         "ROUND(AVG(A.Count)) AS Avg_Count, " +
                         "SUM(A.COUNT) AS Total_Count, " +
                         "COUNT(B.DESCRIPTION) AS Total_Set, " +
-                        "strftime(\"%m\", A.WorkDateTime) AS Month " +
+                        "strftime(\"%Y년%m\", A.WorkDateTime) AS Month " +
                         "FROM Health_Info A, Work_Code B " +
                         "WHERE A.WorkType = B.WorkType " +
-                        "GROUP BY B.Description, strftime(\"%m\", A.WorkDateTime)" +
+                        "GROUP BY B.Description, strftime(\"%Y년%m\", A.WorkDateTime)" +
                         "ORDER BY WorkDateTime;";
 
                     SQLiteCommand command = new SQLiteCommand(sql, connection);

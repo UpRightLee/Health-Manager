@@ -199,9 +199,9 @@ namespace HealthNote
             cbbKind.SelectedItem = workTypes[0];
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnMonthlyReport_Click(object sender, EventArgs e)
         {
-            MonthlyReportForm monthlyReportForm = new MonthlyReportForm();
+            MonthlyReportForm monthlyReportForm = new MonthlyReportForm(lv_dataList.Items);
             monthlyReportForm.ShowDialog();
         }
     }

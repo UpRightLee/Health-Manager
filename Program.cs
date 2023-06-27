@@ -13,10 +13,29 @@ namespace HealthNote
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
+            bool bnew;
 
-            dataBaseManager.CreateDB();
-            ApplicationConfiguration.Initialize();
-            Application.Run(new MainForm());
+            Mutex mutex = new Mutex(true, "Health_Note", out bnew);
+
+            try
+            {
+                if (bnew)
+                {
+                    dataBaseManager.CreateDB();
+                    ApplicationConfiguration.Initialize();
+                    Application.Run(new MainForm());
+
+                    mutex.ReleaseMutex();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "MAIN");
+            }
+            finally
+            {
+                mutex.Close();
+            }          
         }
     }
 }
