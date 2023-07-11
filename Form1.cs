@@ -63,6 +63,10 @@ namespace HealthNote
             }
             else if (addOrDelete.Equals("Delete"))
             {
+                for (int i = 0; i < lv_dataList.Items.Count; i++) 
+                {
+                    if (lv_dataList.Items[i].SubItems[3].Text == workDateTime) return;
+                }
                 this.Controls.Remove(buttons[date - 1]);
                 this.buttons[date - 1].Enabled = false;
                 this.buttons[date - 1].BackColor = Color.White;
@@ -123,7 +127,7 @@ namespace HealthNote
                 buttons[i].BackColor = Color.White;
                 buttons[i].ForeColor = Color.Black;
                 buttons[i].Enabled = false;
-                buttons[i].Click += (sender, e2) => Button_Click(sender!, e2);
+                buttons[i].Click += (sender, e2) => Day_Button_Click(sender!, e2);
 
                 for (int k = 0; k < lv_dataList.Items.Count; k++)
                 {
@@ -142,7 +146,7 @@ namespace HealthNote
             }
         }
 
-        private void Button_Click(object sender, EventArgs e2)
+        private void Day_Button_Click(object sender, EventArgs e2)
         {
             string openDateTime = String.Format("{0}-{1}-{2}", DateTime.Now.Year, DateTime.Now.Month.ToString("D2"), ((Control)sender).Text.PadLeft(2, '0'));
             
