@@ -130,6 +130,10 @@ namespace HealthNote
             {
                 this.Close();
             }
+            else if ((Keys)e.KeyValue == Keys.Enter)
+            {
+                SelectMonthlyData(lv_monthList.SelectedItems[0].SubItems[1].Text.Replace("월", ""));
+            }
         }
         private void lv_monthList_MouseClick(object sender, MouseEventArgs e)
         {
