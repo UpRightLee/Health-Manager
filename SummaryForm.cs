@@ -37,11 +37,11 @@ namespace HealthNote
                 ListViewItem items = new ListViewItem("");
                 items.SubItems.Add(healthInfos[i].WorkType);
 
-                if (healthInfos[i].WorkType == "필라테스" || healthInfos[i].WorkType == "요가" || healthInfos[i].WorkType == "스트레칭")
+                if (healthInfos[i].WorkType == "필라테스" || healthInfos[i].WorkType == "요가" || healthInfos[i].WorkType == "스트레칭" || healthInfos[i].WorkType == "폼롤러스트레칭")
                     items.SubItems.Add(healthInfos[i].TotalCount.ToString() + "분");
                 else items.SubItems.Add(healthInfos[i].TotalCount.ToString() + "개");
 
-                if (healthInfos[i].WorkType == "필라테스" || healthInfos[i].WorkType == "요가" || healthInfos[i].WorkType == "스트레칭")
+                if (healthInfos[i].WorkType == "필라테스" || healthInfos[i].WorkType == "요가" || healthInfos[i].WorkType == "스트레칭" || healthInfos[i].WorkType == "폼롤러스트레칭")
                     items.SubItems.Add(healthInfos[i].Count.ToString() + "분");
                 else items.SubItems.Add(healthInfos[i].Count.ToString() + "개");
 

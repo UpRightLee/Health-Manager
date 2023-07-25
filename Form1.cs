@@ -90,7 +90,7 @@ namespace HealthNote
                 ListViewItem items = new ListViewItem("");
                 items.SubItems.Add(healthInfos[i].WorkType);
 
-                if (healthInfos[i].WorkType == "필라테스" || healthInfos[i].WorkType == "요가" || healthInfos[i].WorkType == "스트레칭")
+                if (healthInfos[i].WorkType == "필라테스" || healthInfos[i].WorkType == "요가" || healthInfos[i].WorkType == "스트레칭" || healthInfos[i].WorkType == "폼롤러스트레칭")
                     items.SubItems.Add(healthInfos[i].Count.ToString() + "분");
                 else items.SubItems.Add(healthInfos[i].Count.ToString() + "개");
 
@@ -159,7 +159,7 @@ namespace HealthNote
             WorkOutInfo workData = new WorkOutInfo();
             workData.WorkType = lv_dataList.SelectedItems[0].SubItems[1].Text;
             
-            if (workData.WorkType == "필라테스" || workData.WorkType == "요가" || workData.WorkType == "스트레칭")
+            if (workData.WorkType == "필라테스" || workData.WorkType == "요가" || workData.WorkType == "스트레칭" || workData.WorkType == "폼롤러스트레칭")
                 workData.Count = int.Parse(lv_dataList.SelectedItems[0].SubItems[2].Text.Replace("분", ""));
             else workData.Count = int.Parse(lv_dataList.SelectedItems[0].SubItems[2].Text.Replace("개", ""));
             
