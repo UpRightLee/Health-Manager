@@ -57,8 +57,10 @@
             this.ClientSize = new System.Drawing.Size(317, 185);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.txtWork);
+            this.KeyPreview = true;
             this.Name = "AddWorkForm";
             this.Text = "AddWorkForm";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AddWorkForm_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lv_dataList = new System.Windows.Forms.ListView();
             this.header = new System.Windows.Forms.ColumnHeader();
             this.workType = new System.Windows.Forms.ColumnHeader();
@@ -50,6 +51,10 @@
             this.lblSun = new System.Windows.Forms.Label();
             this.btnAddWork = new System.Windows.Forms.Button();
             this.btnMonthlyReport = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblTimerCount = new System.Windows.Forms.Label();
+            this.btnTimerControl = new System.Windows.Forms.Button();
+            this.workTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // lv_dataList
@@ -65,7 +70,7 @@
             this.lv_dataList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lv_dataList.Location = new System.Drawing.Point(12, 12);
             this.lv_dataList.Name = "lv_dataList";
-            this.lv_dataList.Size = new System.Drawing.Size(365, 497);
+            this.lv_dataList.Size = new System.Drawing.Size(375, 497);
             this.lv_dataList.TabIndex = 0;
             this.lv_dataList.UseCompatibleStateImageBehavior = false;
             // 
@@ -79,7 +84,7 @@
             this.workType.DisplayIndex = 0;
             this.workType.Text = "종목";
             this.workType.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.workType.Width = 120;
+            this.workType.Width = 130;
             // 
             // workCount
             // 
@@ -98,17 +103,17 @@
             // cbbKind
             // 
             this.cbbKind.FormattingEnabled = true;
-            this.cbbKind.Location = new System.Drawing.Point(425, 12);
+            this.cbbKind.Location = new System.Drawing.Point(407, 12);
             this.cbbKind.Name = "cbbKind";
-            this.cbbKind.Size = new System.Drawing.Size(130, 23);
+            this.cbbKind.Size = new System.Drawing.Size(117, 23);
             this.cbbKind.TabIndex = 1;
             this.cbbKind.SelectedValueChanged += new System.EventHandler(this.cbbKind_SelectedValueChanged);
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(593, 12);
+            this.btnAdd.Location = new System.Drawing.Point(623, 14);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(101, 26);
+            this.btnAdd.Size = new System.Drawing.Size(81, 26);
             this.btnAdd.TabIndex = 3;
             this.btnAdd.Text = "기록하기";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -116,9 +121,9 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(593, 47);
+            this.btnDelete.Location = new System.Drawing.Point(623, 46);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(101, 26);
+            this.btnDelete.Size = new System.Drawing.Size(81, 26);
             this.btnDelete.TabIndex = 4;
             this.btnDelete.Text = "삭제";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -127,16 +132,16 @@
             // lblSetCount
             // 
             this.lblSetCount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblSetCount.Location = new System.Drawing.Point(497, 85);
+            this.lblSetCount.Location = new System.Drawing.Point(570, 47);
             this.lblSetCount.Name = "lblSetCount";
-            this.lblSetCount.Size = new System.Drawing.Size(58, 23);
+            this.lblSetCount.Size = new System.Drawing.Size(38, 23);
             this.lblSetCount.TabIndex = 5;
             this.lblSetCount.Text = "0";
             this.lblSetCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(425, 49);
+            this.label1.Location = new System.Drawing.Point(407, 49);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(66, 23);
             this.label1.TabIndex = 6;
@@ -145,9 +150,9 @@
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(425, 85);
+            this.label2.Location = new System.Drawing.Point(508, 47);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 23);
+            this.label2.Size = new System.Drawing.Size(56, 23);
             this.label2.TabIndex = 7;
             this.label2.Text = "세트 수 : ";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -157,10 +162,10 @@
             this.txtCount.BackColor = System.Drawing.SystemColors.Window;
             this.txtCount.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtCount.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtCount.Location = new System.Drawing.Point(497, 49);
+            this.txtCount.Location = new System.Drawing.Point(451, 49);
             this.txtCount.Multiline = true;
             this.txtCount.Name = "txtCount";
-            this.txtCount.Size = new System.Drawing.Size(58, 18);
+            this.txtCount.Size = new System.Drawing.Size(45, 18);
             this.txtCount.TabIndex = 8;
             this.txtCount.Text = "0";
             this.txtCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -246,7 +251,7 @@
             // 
             // btnAddWork
             // 
-            this.btnAddWork.Location = new System.Drawing.Point(716, 12);
+            this.btnAddWork.Location = new System.Drawing.Point(715, 14);
             this.btnAddWork.Name = "btnAddWork";
             this.btnAddWork.Size = new System.Drawing.Size(88, 26);
             this.btnAddWork.TabIndex = 17;
@@ -256,7 +261,7 @@
             // 
             // btnMonthlyReport
             // 
-            this.btnMonthlyReport.Location = new System.Drawing.Point(716, 47);
+            this.btnMonthlyReport.Location = new System.Drawing.Point(715, 47);
             this.btnMonthlyReport.Name = "btnMonthlyReport";
             this.btnMonthlyReport.Size = new System.Drawing.Size(88, 26);
             this.btnMonthlyReport.TabIndex = 18;
@@ -264,11 +269,48 @@
             this.btnMonthlyReport.UseVisualStyleBackColor = true;
             this.btnMonthlyReport.Click += new System.EventHandler(this.btnMonthlyReport_Click);
             // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point(408, 85);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(47, 23);
+            this.label3.TabIndex = 19;
+            this.label3.Text = "Timer :";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblTimerCount
+            // 
+            this.lblTimerCount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblTimerCount.Location = new System.Drawing.Point(451, 85);
+            this.lblTimerCount.Name = "lblTimerCount";
+            this.lblTimerCount.Size = new System.Drawing.Size(73, 23);
+            this.lblTimerCount.TabIndex = 20;
+            this.lblTimerCount.Text = "0분 0초";
+            this.lblTimerCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnTimerControl
+            // 
+            this.btnTimerControl.Location = new System.Drawing.Point(623, 81);
+            this.btnTimerControl.Name = "btnTimerControl";
+            this.btnTimerControl.Size = new System.Drawing.Size(81, 27);
+            this.btnTimerControl.TabIndex = 21;
+            this.btnTimerControl.Text = "Start";
+            this.btnTimerControl.UseVisualStyleBackColor = true;
+            this.btnTimerControl.Click += new System.EventHandler(this.btnTimerControl_Click);
+            // 
+            // workTimer
+            // 
+            this.workTimer.Interval = 1000;
+            this.workTimer.Tick += new System.EventHandler(this.workTimer_Tick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(810, 521);
+            this.Controls.Add(this.btnTimerControl);
+            this.Controls.Add(this.lblTimerCount);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnMonthlyReport);
             this.Controls.Add(this.btnAddWork);
             this.Controls.Add(this.lblSun);
@@ -320,5 +362,9 @@
         private ColumnHeader header;
         private Button btnAddWork;
         private Button btnMonthlyReport;
+        private Label label3;
+        private Label lblTimerCount;
+        private Button btnTimerControl;
+        private System.Windows.Forms.Timer workTimer;
     }
 }

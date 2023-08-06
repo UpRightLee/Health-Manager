@@ -1,9 +1,14 @@
+using System.Timers;
+
 namespace HealthNote
 {
     public partial class MainForm : Form
     {
         private static DataBaseManager dataBaseManager = DataBaseManager.Instance;
-       
+
+        private int workOutTimerSecond = 0;
+        private int workOutTimerMinute = 0;
+
         Button[] buttons = new Button[DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month)];
         public MainForm()
         {
@@ -22,7 +27,7 @@ namespace HealthNote
         private void cbbKind_SelectedValueChanged(object sender, EventArgs e)
         {
             if (cbbKind.SelectedItem.ToString() == "필라테스" || cbbKind.SelectedItem.ToString() == "요가"
-              || cbbKind.SelectedItem.ToString() == "스트레칭") label1.Text = "시간 : ";
+              || cbbKind.SelectedItem.ToString() == "스트레칭" || cbbKind.SelectedItem.ToString() == "폼롤러스트레칭") label1.Text = "시간 : ";
             else label1.Text = "횟수 : ";
 
             lblSetCount.Text = "0";
@@ -47,6 +52,8 @@ namespace HealthNote
             SelectWorkOutData();
 
             Update_Calendar(newWorkOutInfo.WorkDateTime, "Add");
+
+            this.Cursor = Cursors.Default;
         }
 
         private void Update_Calendar(string workDateTime, string addOrDelete)
@@ -171,6 +178,8 @@ namespace HealthNote
             SelectWorkOutData();
 
             Update_Calendar(workData.WorkDateTime, "Delete");
+
+            this.Cursor = Cursors.Default;
         }
 
         private void btnAddWork_Click(object sender, EventArgs e)
@@ -207,6 +216,37 @@ namespace HealthNote
         {
             MonthlyReportForm monthlyReportForm = new MonthlyReportForm(lv_dataList.Items);
             monthlyReportForm.ShowDialog();
+        }
+
+        private void btnTimerControl_Click(object sender, EventArgs e)
+        {
+            if (this.btnTimerControl.Text == "Start")
+            {
+                workTimer.Start();
+                this.btnTimerControl.Text = "Stop";
+            }
+            else 
+            {
+                workTimer.Stop();
+                if (workOutTimerSecond > 50) workOutTimerMinute++;
+                txtCount.Text = workOutTimerMinute.ToString();
+                workOutTimerSecond = 0;
+                workOutTimerMinute = 0;
+                this.lblTimerCount.Text = "0분 0초";
+                this.btnTimerControl.Text = "Start";
+            }
+            this.Cursor = Cursors.Default;
+        }
+
+        private void workTimer_Tick(object sender, EventArgs e)
+        {
+            workOutTimerSecond++;
+            if (workOutTimerSecond > 59)
+            {
+                workOutTimerSecond = 0;
+                workOutTimerMinute++;
+            }
+            this.lblTimerCount.Text = workOutTimerMinute.ToString() + "분 " + workOutTimerSecond.ToString() + "초";
         }
     }
 }

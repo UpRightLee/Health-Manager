@@ -30,5 +30,13 @@ namespace HealthNote
                 else MessageBox.Show("Insert Failed");
             }
         }
+
+        private void AddWorkForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((Keys)e.KeyValue == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

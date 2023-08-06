@@ -65,7 +65,7 @@
             this.workType.DisplayIndex = 0;
             this.workType.Text = "종목";
             this.workType.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.workType.Width = 120;
+            this.workType.Width = 130;
             // 
             // workTotalCount
             // 
