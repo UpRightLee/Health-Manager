@@ -36,6 +36,11 @@ namespace HealthNote
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            if (int.Parse(txtCount.Text) == 0)
+            {
+                MessageBox.Show("0개/0분 은 기록할 수 없습니다.");
+                return;
+            }
             WorkOutInfo newWorkOutInfo = new WorkOutInfo();
             newWorkOutInfo.WorkType = cbbKind.SelectedItem.ToString();
             newWorkOutInfo.Count = int.Parse(txtCount.Text);
