@@ -55,6 +55,8 @@
             this.lblTimerCount = new System.Windows.Forms.Label();
             this.btnTimerControl = new System.Windows.Forms.Button();
             this.workTimer = new System.Windows.Forms.Timer(this.components);
+            this.btnLastMonth = new System.Windows.Forms.Button();
+            this.btnNextMonth = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lv_dataList
@@ -303,11 +305,37 @@
             this.workTimer.Interval = 1000;
             this.workTimer.Tick += new System.EventHandler(this.workTimer_Tick);
             // 
+            // btnLastMonth
+            // 
+            this.btnLastMonth.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnLastMonth.Location = new System.Drawing.Point(450, 120);
+            this.btnLastMonth.Name = "btnLastMonth";
+            this.btnLastMonth.Size = new System.Drawing.Size(60, 40);
+            this.btnLastMonth.TabIndex = 22;
+            this.btnLastMonth.Text = "◀";
+            this.btnLastMonth.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnLastMonth.UseVisualStyleBackColor = true;
+            this.btnLastMonth.Click += new System.EventHandler(this.btnLastMonth_Click);
+            // 
+            // btnNextMonth
+            // 
+            this.btnNextMonth.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnNextMonth.Location = new System.Drawing.Point(650, 120);
+            this.btnNextMonth.Name = "btnNextMonth";
+            this.btnNextMonth.Size = new System.Drawing.Size(60, 40);
+            this.btnNextMonth.TabIndex = 23;
+            this.btnNextMonth.Text = "▶";
+            this.btnNextMonth.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnNextMonth.UseVisualStyleBackColor = true;
+            this.btnNextMonth.Click += new System.EventHandler(this.btnNextMonth_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(810, 521);
+            this.Controls.Add(this.btnNextMonth);
+            this.Controls.Add(this.btnLastMonth);
             this.Controls.Add(this.btnTimerControl);
             this.Controls.Add(this.lblTimerCount);
             this.Controls.Add(this.label3);
@@ -366,5 +394,7 @@
         private Label lblTimerCount;
         private Button btnTimerControl;
         private System.Windows.Forms.Timer workTimer;
+        private Button btnLastMonth;
+        private Button btnNextMonth;
     }
 }

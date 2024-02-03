@@ -9,6 +9,8 @@ namespace HealthNote
         private int workOutTimerSecond = 0;
         private int workOutTimerMinute = 0;
 
+        private int currentYear = 0;
+
         Button[] buttons = new Button[DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month)];
         public MainForm()
         {
@@ -22,6 +24,8 @@ namespace HealthNote
             Update_WorkComboBox();
 
             Create_Calendar();
+
+            currentYear = DateTime.Now.Year;
         }
 
         private void cbbKind_SelectedValueChanged(object sender, EventArgs e)
@@ -160,7 +164,9 @@ namespace HealthNote
 
         private void Day_Button_Click(object sender, EventArgs e2)
         {
-            string openDateTime = String.Format("{0}-{1}-{2}", DateTime.Now.Year, DateTime.Now.Month.ToString("D2"), ((Control)sender).Text.PadLeft(2, '0'));
+            int currentMonth = int.Parse(this.lblMonth.Text.Replace("월", "").Trim());
+
+            string openDateTime = String.Format("{0}-{1}-{2}", currentYear, currentMonth.ToString("D2"), ((Control)sender).Text.PadLeft(2, '0'));
             
             SummaryForm summaryForm = new SummaryForm(openDateTime);
             summaryForm.ShowDialog();
@@ -252,6 +258,142 @@ namespace HealthNote
                 workOutTimerMinute++;
             }
             this.lblTimerCount.Text = workOutTimerMinute.ToString() + "분 " + workOutTimerSecond.ToString() + "초";
+        }
+
+        private void btnLastMonth_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int currentMonth = int.Parse(this.lblMonth.Text.Replace("월", "").Trim());
+
+                for (int i = 0; i < DateTime.DaysInMonth(currentYear, currentMonth); i++)
+                {
+                    this.Controls.Remove(buttons[i]);
+                }
+
+                if (currentMonth == 1)
+                {
+                    currentYear -= 1;
+
+                    currentMonth = 12;
+                }
+                else currentMonth -= 1;
+
+                DateTime dateTime = new DateTime(currentYear, currentMonth, 1);
+
+                int checkStartWeekDay = (int)dateTime.DayOfWeek;
+                int checkWeekVertical = 0;
+                int checkWeekHorizontal = checkStartWeekDay;
+
+                this.lblMonth.Text = currentMonth.ToString() + "월";
+
+                buttons = new Button[DateTime.DaysInMonth(currentYear, currentMonth)];
+
+                for (int i = 0; i < DateTime.DaysInMonth(currentYear, currentMonth); i++)
+                {
+                    if (i != 0 && checkWeekHorizontal % 7 == 0)
+                    {
+                        checkWeekVertical += 7;
+                        checkWeekHorizontal = 0;
+                    }
+
+                    buttons[i] = new Button();
+                    buttons[i].Location = new Point(400 + (checkWeekHorizontal * 56), 200 + (checkWeekVertical * 8));
+                    buttons[i].Size = new Size(50, 40);
+                    buttons[i].Text = (i + 1).ToString();
+                    buttons[i].BackColor = Color.White;
+                    buttons[i].ForeColor = Color.Black;
+                    buttons[i].Enabled = false;
+                    buttons[i].Click += (sender, e2) => Day_Button_Click(sender!, e2);
+
+                    for (int k = 0; k < lv_dataList.Items.Count; k++)
+                    {
+                        if (lv_dataList.Items[k].SubItems[3].Text == $"{currentYear}-{currentMonth.ToString("D2")}-{i.ToString("D2")}")
+                        {
+                            buttons[i - 1].Enabled = true;
+                            buttons[i - 1].BackColor = Color.LightSkyBlue;
+                            buttons[i - 1].ForeColor = Color.White;
+                            break;
+                        }
+                    }
+
+                    this.Controls.Add(buttons[i]);
+
+                    checkWeekHorizontal++;
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnNextMonth_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int currentMonth = int.Parse(this.lblMonth.Text.Replace("월", "").Trim());
+
+                for (int i = 0; i < DateTime.DaysInMonth(currentYear, currentMonth); i++)
+                {
+                    this.Controls.Remove(buttons[i]);
+                }
+
+                if (currentMonth == 12)
+                {
+                    currentYear += 1;
+
+                    currentMonth = 1;
+                }
+                else currentMonth += 1;
+
+                DateTime dateTime = new DateTime(currentYear, currentMonth, 1);
+
+                int checkStartWeekDay = (int)dateTime.DayOfWeek;
+                int checkWeekVertical = 0;
+                int checkWeekHorizontal = checkStartWeekDay;
+
+                this.lblMonth.Text = currentMonth.ToString() + "월";
+
+                buttons = new Button[DateTime.DaysInMonth(currentYear, currentMonth)];
+
+                for (int i = 0; i < DateTime.DaysInMonth(currentYear, currentMonth); i++)
+                {
+                    if (i != 0 && checkWeekHorizontal % 7 == 0)
+                    {
+                        checkWeekVertical += 7;
+                        checkWeekHorizontal = 0;
+                    }
+
+                    buttons[i] = new Button();
+                    buttons[i].Location = new Point(400 + (checkWeekHorizontal * 56), 200 + (checkWeekVertical * 8));
+                    buttons[i].Size = new Size(50, 40);
+                    buttons[i].Text = (i + 1).ToString();
+                    buttons[i].BackColor = Color.White;
+                    buttons[i].ForeColor = Color.Black;
+                    buttons[i].Enabled = false;
+                    buttons[i].Click += (sender, e2) => Day_Button_Click(sender!, e2);
+
+                    for (int k = 0; k < lv_dataList.Items.Count; k++)
+                    {
+                        if (lv_dataList.Items[k].SubItems[3].Text == $"{currentYear}-{currentMonth.ToString("D2")}-{i.ToString("D2")}")
+                        {
+                            buttons[i - 1].Enabled = true;
+                            buttons[i - 1].BackColor = Color.LightSkyBlue;
+                            buttons[i - 1].ForeColor = Color.White;
+                            break;
+                        }
+                    }
+
+                    this.Controls.Add(buttons[i]);
+
+                    checkWeekHorizontal++;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
